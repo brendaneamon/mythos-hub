@@ -23,6 +23,18 @@ app.get("/", function(req, res){
   res.render("app-welcome");
 });
 
+app.get("/api/myth-references", function(req, res){
+  MythRef.find({}).then(function(references){
+    res.json(references);
+  });
+});
+
+app.get("/api/myth-references/:title", function(req, res){
+  MythRef.findOne(req.params).then(function(reference){
+    res.json(reference);
+  });
+});
+
 app.listen(app.get("port"), function(){
   console.log("Help, I'm Alive");
 });
