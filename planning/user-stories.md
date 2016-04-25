@@ -8,7 +8,7 @@
 * As a user, I want to be able to add content to the application so that I can contribute to the community's knowledge of myths in popular culture
 * As an administrator, I want to be able to create, edit, update, and delete content on the application so that I can control for quality and relevance
 
-## User Stories for features that may be included in future versions of the app
+### User Stories for features that may be included in future versions of the app
 
 * As a user, I want to locate and view references to classical myths by nation or culture of origin (e.g., Greek, Roman, Norse, Egyptian, etc.)
 * As a user, I want to locate and view references to classical myths by the artist who produced the work
