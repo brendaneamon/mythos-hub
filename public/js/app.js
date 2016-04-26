@@ -74,7 +74,7 @@ function MythRefsShowCtrl (MythReference, $stateParams, $state, $window) {
   };
   vm.delete = function(){
     MythReference.remove({title: vm.reference.title}, function(){
-      $window.location.replace("/");
+      $window.location.replace("/myth-references");
     });
   };
 }
