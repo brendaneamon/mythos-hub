@@ -24,7 +24,7 @@
     })
     .state("index", {
       url: "/myth-references",
-      template: "/assets/html/myth-references-index.html",
+      templateUrl: "/assets/html/myth-references-index.html",
       controller: "mythRefsIndexCtrl",
       controllerAs: "indexVM"
     })
