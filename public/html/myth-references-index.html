@@ -1,1 +1,5 @@
 <h2>This is the index view for all myth references</h2>
+
+<div data-ng-repeat="mythRef in indexVM.mythRefs">
+  <p>"{{mythRef.title}}" by {{mythRef.artist}}</p>
+</div>
