@@ -32,6 +32,18 @@ app.get("/api/myth-references/:title", function(req, res){
   });
 });
 
+app.delete("/api/myth-references/:title", function(req, res){
+  MythRef.findOneAndRemove({title: req.params.title}).then(function(){
+    res.json({success: true});
+  });
+});
+
+app.put("/api/myth-references/:title", function(req, res){
+  MythRef.findOneAndUpdate({title: req.params.title}, req.body.reference, {new: true}).then(function(reference){
+    res.json(reference);
+  });
+});
+
 app.get("/*", function(req, res){
   res.render("myth-references");
 });

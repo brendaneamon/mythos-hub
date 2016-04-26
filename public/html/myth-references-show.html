@@ -1,5 +1,15 @@
 <h2>This is the show view for an individual myth reference</h2>
 
 <div>
-  <p>{{showVM.reference.title}} by {{showVM.reference.artist}}</p>
+  <h3>"{{showVM.reference.title}}" by {{showVM.reference.artist}}</h3>
+  <p>{{showVM.reference.description}}</p>
 </div>
+
+
+<form>
+  <input type="text" name="showVM.reference.title" value="showVM.reference.title" placeholder="Title" data-ng-model="showVM.reference.title">
+  <input type="text" name="showVM.reference.artist" value="showVM.reference.artist" placeholder="Artist" data-ng-model="showVM.reference.artist">
+  <input type="textarea" name="showVM.reference.description" value="showVM.reference.description" placeholder="Description" data-ng-model="showVM.reference.description">
+  <button data-ng-click="showVM.update()">Update</button>
+  <button data-ng-click="showVM.delete()">Delete</button>
+</form>

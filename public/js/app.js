@@ -24,6 +24,8 @@
   .controller("MythRefsShowCtrl", [
     "MythReference",
     "$stateParams",
+    "$state",
+    "$window",
     MythRefsShowCtrl
   ]);
 
@@ -53,11 +55,21 @@ function MythRefsIndexCtrl (MythReference, $state) {
 
 // Myth Reference show controller function
 
-function MythRefsShowCtrl (MythReference, $stateParams) {
+function MythRefsShowCtrl (MythReference, $stateParams, $state, $window) {
   var vm = this;
   MythReference.find("title", $stateParams.title, function(reference){
     vm.reference = reference;
   });
+  vm.update = function(){
+    MythReference.update($stateParams, {reference: vm.reference}, function(){
+      $state.go("index");
+    });
+  };
+  vm.delete = function(){
+    MythReference.remove({title: vm.reference.title}, function(){
+      $window.location.replace("/");
+    });
+  };
 }
 
 // Router function
