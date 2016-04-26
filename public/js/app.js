@@ -8,7 +8,6 @@
   ])
   .config([
     "$stateProvider",
-    "$locationProvider",
     Router
   ])
   .controller("mythRefsIndexCtrl", [
@@ -17,8 +16,7 @@
     showIndexCtrl
   ]);
 
-  function Router ($stateProvider, $locationProvider) {
-    $locationProvider.html5Mode(true);
+  function Router ($stateProvider) {
     $stateProvider
     .state("welcome", {
       url: "/",
