@@ -1,10 +1,24 @@
 var express = require("express");
 var hbs = require("express-handlebars");
-var mongoose = require("./db/connection");
 var parser = require("body-parser");
+var session = require("express-session");
+var env = require("./env");
+var cmongo = require("connect-mongo");
+var mongoose = require("./db/connection");
 
 var app = express();
+var SMongo = cmongo(session);
+
 var MythRef = mongoose.model("MythRef");
+
+app.use(session({
+  secret: process.env.session_secret,
+  resave: false,
+  saveUninitialized: false,
+  store: new SMongo({
+    mongooseConnection: mongoose.connection
+  })
+}));
 
 app.set("port", process.env.PORT || 3001);
 app.set("view engine", "hbs");
