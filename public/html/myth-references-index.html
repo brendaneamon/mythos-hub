@@ -1,5 +1,13 @@
 <h2>This is the index view for all myth references</h2>
 
-<div data-ng-repeat="mythRef in indexVM.mythRefs">
-  <p>"{{mythRef.title}}" by {{mythRef.artist}}</p>
+<div data-ng-repeat="reference in indexVM.references">
+  <p>"<a href=""></a>{{reference.title}}" by {{reference.artist}}</p>
 </div>
+
+<form>
+  <input type="text" name="indexVM.reference.title" data-ng-model="indexVM.reference.title" placeholder="Title">
+  <input type="text" name="indexVM.reference.artist" data-ng-model="indexVM.reference.artist"placeholder="Artist">
+  <textarea name="indexVM.reference.description" placeholder="Description" data-ng-model="indexVM.reference.description"></textarea>
+  <input type="text" name="indexVM.reference.mediaUrl" data-ng-model="indexVM.reference.mediaUrl" placeholder="Media URL">
+  <button data-ng-click="indexVM.create()">Add New</button>
+</form>

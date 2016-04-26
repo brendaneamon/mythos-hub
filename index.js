@@ -26,6 +26,12 @@ app.get("/api/myth-references", function(req, res){
   });
 });
 
+app.post("/api/myth-references", function(req, res){
+  MythRef.create(req.body.reference).then(function(reference){
+    res.json(reference);
+  });
+});
+
 app.get("/api/myth-references/:title", function(req, res){
   MythRef.findOne({title: req.params.title}).then(function(reference){
     res.json(reference);

@@ -50,7 +50,14 @@
 
 function MythRefsIndexCtrl (MythReference, $state) {
   var vm = this;
-  vm.mythRefs = MythReference.all;
+  vm.references = MythReference.all;
+  vm.create = function(){
+    MythReference.save({reference: vm.reference}, function(response){
+      var reference = new MythReference(response);
+      MythReference.all.push(reference);
+      $state.go("show", {title: reference.title});
+    });
+  };
 }
 
 // Myth Reference show controller function

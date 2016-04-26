@@ -3,13 +3,14 @@
 <div>
   <h3>"{{showVM.reference.title}}" by {{showVM.reference.artist}}</h3>
   <p>{{showVM.reference.description}}</p>
+  <p>Number of likes: {{showVM.reference.likes}}</p>
 </div>
 
 
 <form>
   <input type="text" name="showVM.reference.title" value="showVM.reference.title" placeholder="Title" data-ng-model="showVM.reference.title">
   <input type="text" name="showVM.reference.artist" value="showVM.reference.artist" placeholder="Artist" data-ng-model="showVM.reference.artist">
-  <input type="textarea" name="showVM.reference.description" value="showVM.reference.description" placeholder="Description" data-ng-model="showVM.reference.description">
+  <textarea name="showVM.reference.description" value="showVM.reference.description" placeholder="Description" data-ng-model="showVM.reference.description"></textarea>
   <button data-ng-click="showVM.update()">Update</button>
   <button data-ng-click="showVM.delete()">Delete</button>
 </form>

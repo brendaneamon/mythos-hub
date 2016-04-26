@@ -6,7 +6,7 @@ var MythRefSchema = new mongoose.Schema(
     artist: String,
     description: String,
     mediaUrl: String,
-    likes: Number
+    likes: { type: Number, default: 0 }
   }
 );
 
