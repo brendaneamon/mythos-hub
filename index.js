@@ -6,6 +6,7 @@ var request = require("request");
 var qstring = require("qs");
 var cmongo = require("connect-mongo");
 var mongoose = require("./db/connection");
+var twitter = require("./lib/twitter_auth");
 
 var app = express();
 var SMongo = cmongo(session);
