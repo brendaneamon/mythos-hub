@@ -8,6 +8,8 @@
   ])
   .config([
     "$stateProvider",
+    "$locationProvider",
+    "$urlRouterProvider",
     Router
   ])
   .factory("MythReference", [
@@ -18,9 +20,15 @@
     "MythReference",
     "$state",
     MythRefsIndexCtrl
+  ])
+  .controller("MythRefsShowCtrl", [
+    "MythReference",
+    "$stateParams",
+    "$state",
+    MythRefsShowCtrl
   ]);
 
-  // Myth Reference factory function is here
+  // Myth Reference factory function
 
   function MythReference ($resource) {
     var MythRef = $resource("/api/myth-references/:title", {}, {
@@ -43,9 +51,16 @@ function MythRefsIndexCtrl (MythReference, $state) {
   this.mythRefs = MythReference.all;
 }
 
+// Myth Reference show controller function
+
+function MythRefsShowCtrl (MythReference, $state, $stateParams) {
+
+}
+
 // Router function
 
-  function Router ($stateProvider) {
+  function Router ($stateProvider, $locationProvider, $urlRouterProvider) {
+    $locationProvider.html5Mode(true);
     $stateProvider
     .state("welcome", {
       url: "/",
@@ -61,6 +76,7 @@ function MythRefsIndexCtrl (MythReference, $state) {
       url: "/myth-references/:title",
       templateUrl: "/assets/html/myth-references-show.html"
     });
+    $urlRouterProvider.otherwise("/");
   }
 
 })();

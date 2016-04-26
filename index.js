@@ -19,9 +19,6 @@ app.use("/assets", express.static("public"));
 app.use(parser.urlencoded({extended: true}));
 app.use(parser.json({extended: true}));
 
-app.get("/", function(req, res){
-  res.render("myth-references");
-});
 
 app.get("/api/myth-references", function(req, res){
   MythRef.find({}).then(function(references){
@@ -33,6 +30,10 @@ app.get("/api/myth-references/:title", function(req, res){
   MythRef.findOne(req.params).then(function(reference){
     res.json(reference);
   });
+});
+
+app.get("/*", function(req, res){
+  res.render("myth-references");
 });
 
 app.listen(app.get("port"), function(){
