@@ -11,6 +11,11 @@ var MythRefSchema = new mongoose.Schema(
 );
 
 mongoose.model("MythRef", MythRefSchema);
-mongoose.connect("mongodb://localhost/mythrefs");
+
+if (process.env.NODE_ENV == "production") {
+  mongoose.connect(process.env.MONGODB_URI);
+} else {
+  mongoose.connect("mongodb://localhost/mythrefs");
+}
 
 module.exports = mongoose;
