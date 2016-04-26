@@ -2,7 +2,8 @@ var express = require("express");
 var hbs = require("express-handlebars");
 var parser = require("body-parser");
 var session = require("express-session");
-var env = require("./env");
+var request = require("request");
+var qstring = require("qs");
 var cmongo = require("connect-mongo");
 var mongoose = require("./db/connection");
 
@@ -10,6 +11,14 @@ var app = express();
 var SMongo = cmongo(session);
 
 var MythRef = mongoose.model("MythRef");
+
+if(process.env.NODE_ENV !== "production"){
+  var env = require("./env");
+  process.env.session_secret = env.session_secret;
+  process.env.t_callback_url = env.t_callback_url;
+  process.env.t_consumer_key = env.t_consumer_key;
+  process.env.t_consumer_secret = env.t_consumer_secret;
+}
 
 app.use(session({
   secret: process.env.session_secret,
@@ -32,7 +41,29 @@ app.engine(".hbs", hbs({
 app.use("/assets", express.static("public"));
 app.use(parser.urlencoded({extended: true}));
 app.use(parser.json({extended: true}));
+app.use(function(req, res, next){
+  res.locals.isProduction = (process.env.NODE_ENV == "production");
+  twitter.checkIfSignedIn(req, res, function(){
+    next();
+  });
+});
 
+app.get("/login/twitter", function(req, res){
+  twitter.getSigninURL(req, res, function(url){
+    res.redirect(url);
+  });
+});
+
+app.get("/login/twitter/callback", function(req, res){
+  twitter.whenSignedIn(req, res, function(){
+    res.redirect("/");
+  });
+});
+
+app.get("/logout", function(req, res){
+  req.session.destroy();
+  res.redirect("/");
+});
 
 app.get("/api/myth-references", function(req, res){
   MythRef.find({}).then(function(references){

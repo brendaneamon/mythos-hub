@@ -10,7 +10,17 @@ var MythRefSchema = new mongoose.Schema(
   }
 );
 
+var UserSchema = new mongoose.Schema(
+  {
+    name: String,
+    t_id: Number,
+    t_username: String,
+    t_photo_url: String
+  }
+);
+
 mongoose.model("MythRef", MythRefSchema);
+mongoose.model("User", UserSchema);
 
 if (process.env.NODE_ENV == "production") {
   mongoose.connect(process.env.MONGODB_URI);
