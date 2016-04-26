@@ -24,7 +24,6 @@
   .controller("MythRefsShowCtrl", [
     "MythReference",
     "$stateParams",
-    "$state",
     MythRefsShowCtrl
   ]);
 
@@ -48,13 +47,17 @@
 // Myth Reference index controller function
 
 function MythRefsIndexCtrl (MythReference, $state) {
-  this.mythRefs = MythReference.all;
+  var vm = this;
+  vm.mythRefs = MythReference.all;
 }
 
 // Myth Reference show controller function
 
-function MythRefsShowCtrl (MythReference, $state, $stateParams) {
-
+function MythRefsShowCtrl (MythReference, $stateParams) {
+  var vm = this;
+  MythReference.find("title", $stateParams.title, function(reference){
+    vm.reference = reference;
+  });
 }
 
 // Router function
@@ -74,7 +77,9 @@ function MythRefsShowCtrl (MythReference, $state, $stateParams) {
     })
     .state("show", {
       url: "/myth-references/:title",
-      templateUrl: "/assets/html/myth-references-show.html"
+      templateUrl: "/assets/html/myth-references-show.html",
+      controller: "MythRefsShowCtrl",
+      controllerAs: "showVM"
     });
     $urlRouterProvider.otherwise("/");
   }

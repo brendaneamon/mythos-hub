@@ -27,7 +27,7 @@ app.get("/api/myth-references", function(req, res){
 });
 
 app.get("/api/myth-references/:title", function(req, res){
-  MythRef.findOne(req.params).then(function(reference){
+  MythRef.findOne({title: req.params.title}).then(function(reference){
     res.json(reference);
   });
 });
