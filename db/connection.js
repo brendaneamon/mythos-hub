@@ -22,11 +22,7 @@ var UserSchema = new mongoose.Schema(
     name: String,
     isAdmin: Boolean,
     t_id: String,
-    t_username: {
-      type: String,
-      unique: true,
-      required: true
-    },
+    t_username: String,
     t_photo_url: String
   }
 );

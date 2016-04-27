@@ -24,7 +24,7 @@ if(process.env.NODE_ENV !== "production"){
 
 app.use(session({
   secret: process.env.session_secret,
-  resave: true,
+  resave: false,
   saveUninitialized: false,
   store: new SMongo({
     mongooseConnection: mongoose.connection
