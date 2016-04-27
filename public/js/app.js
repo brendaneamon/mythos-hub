@@ -59,10 +59,10 @@
       update: {method: "PUT"},
     });
     User.all = User.query();
-    User.find = function(property, value, callback){
+    User.find = function(property1, property2, value1, value2, callback){
       User.all.$promise.then(function(){
         User.all.forEach(function(user){
-          if(user[property] == value) callback(user);
+          if((user[property1] == value1) && (user[property2] == value2)) callback(user);
         });
       });
     };
@@ -73,8 +73,10 @@
 
   function MythRefsIndexCtrl (MythReference, User, $state) {
     var vm = this;
-    vm.users = User.all;
-    console.dir(vm.users);
+    User.find("isAdmin", "isCurrentUser", true, true, function(user){
+      vm.admin = user;
+      console.dir(vm.admin);
+    });
     vm.references = MythReference.all;
     vm.create = function(){
       MythReference.save({reference: vm.reference}, function(response){

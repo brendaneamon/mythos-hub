@@ -1,8 +1,9 @@
 [
   {
     "name": "Test",
-    "t_id": "String",
-    "t_username": "String",
-    "t_photo_url": "String"
+    "isAdmin": true,
+    "t_id": "12345",
+    "t_username": "GlennDanzig",
+    "t_photo_url": "http://www.metal-archives.com/images/3/5/4/0/3540303007_photo.jpg"
   }
 ]

@@ -3,8 +3,14 @@ var mongoose = require("mongoose");
 var ObjectId = mongoose.Schema.Types.ObjectId;
 var MythRefSchema = new mongoose.Schema(
   {
-    title: String,
-    artist: String,
+    title: {
+      type: String,
+      required: true
+    },
+    artist: {
+      type: String,
+      required: true
+    },
     description: String,
     mediaUrl: String,
     likes: { type: Number, default: 0 }
@@ -14,8 +20,13 @@ var MythRefSchema = new mongoose.Schema(
 var UserSchema = new mongoose.Schema(
   {
     name: String,
+    isAdmin: Boolean,
     t_id: String,
-    t_username: String,
+    t_username: {
+      type: String,
+      unique: true,
+      required: true
+    },
     t_photo_url: String
   }
 );
