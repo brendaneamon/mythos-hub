@@ -91,6 +91,10 @@
 
   function MythRefsShowCtrl (MythReference, User, $stateParams, $state, $window) {
     var vm = this;
+    User.find("isAdmin", "isCurrentUser", true, true, function(user){
+      vm.admin = user;
+      console.dir(vm.admin);
+    });
     MythReference.find("title", $stateParams.title, function(reference){
       vm.reference = reference;
     });

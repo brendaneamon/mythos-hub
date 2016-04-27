@@ -4,7 +4,7 @@
   <p>"<a href="/myth-references/{{reference.title}}">{{reference.title}}" by {{reference.artist}}</a></p>
 </div>
 
-<form>
+<form data-ng-if="indexVM.admin">
   <input type="text" name="indexVM.reference.title" data-ng-model="indexVM.reference.title" placeholder="Title">
   <input type="text" name="indexVM.reference.artist" data-ng-model="indexVM.reference.artist"placeholder="Artist">
   <textarea name="indexVM.reference.description" placeholder="Description" data-ng-model="indexVM.reference.description"></textarea>
