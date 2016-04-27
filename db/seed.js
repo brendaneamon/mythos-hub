@@ -1,13 +1,16 @@
 var mongoose = require("./connection");
-var seedData = require("./seed-data");
+var mythSeeds = require("./myth-seeds");
+var userSeeds = require("./user-seeds");
 
 var MythRef = mongoose.model("MythRef");
 var User = mongoose.model("User");
 
 User.remove({}).then(function(){
-  MythRef.remove({}).then(function(){
-    MythRef.collection.insert(seedData).then(function(){
-      process.exit();
+  User.collection.insert(userSeeds).then(function(){
+    MythRef.remove({}).then(function(){
+      MythRef.collection.insert(mythSeeds).then(function(){
+        process.exit();
+      });
     });
   });
 });
