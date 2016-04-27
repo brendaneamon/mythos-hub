@@ -12,6 +12,7 @@ var app = express();
 var SMongo = cmongo(session);
 
 var MythRef = mongoose.model("MythRef");
+var User = mongoose.model("User");
 
 if(process.env.NODE_ENV !== "production"){
   var env = require("./env");
@@ -40,7 +41,6 @@ app.engine(".hbs", hbs({
 }));
 
 app.use("/assets", express.static("public"));
-app.use(parser.urlencoded({extended: true}));
 app.use(parser.json({extended: true}));
 app.use(function(req, res, next){
   res.locals.isProduction = (process.env.NODE_ENV == "production");
@@ -64,6 +64,33 @@ app.get("/login/twitter/callback", function(req, res){
 app.get("/logout", function(req, res){
   req.session.destroy();
   res.redirect("/");
+});
+
+app.get("/api/users", function(req, res){
+  User.find({}).lean().exec().then(function(users){
+    users.forEach(function(user){
+      user.isCurrentUser = (user._id == req.session.user_id);
+    });
+    res.json(users);
+  });
+});
+
+app.get("/api/users/:name", function(req, res){
+  User.findOne({name: req.params.name}).then(function(user){
+    res.json(user);
+  });
+});
+
+app.delete("/api/users/:name", function(req, res){
+  User.findOneAndRemove({name: req.params.name}).then(function(){
+    res.json({success: true});
+  });
+});
+
+app.put("/api/users/:name", function(req, res){
+  User.findOneAndUpdate({name: req.params.name}, req.body.candidate, {new: true}).then(function(user){
+    res.json(user);
+  });
 });
 
 app.get("/api/myth-references", function(req, res){

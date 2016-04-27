@@ -1,5 +1,6 @@
 var mongoose = require("mongoose");
 
+var ObjectId = mongoose.Schema.Types.ObjectId;
 var MythRefSchema = new mongoose.Schema(
   {
     title: String,
