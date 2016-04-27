@@ -1,6 +1,6 @@
 var mongoose = require("./connection");
-var mythSeeds = require("./myth-seeds");
-var userSeeds = require("./user-seeds");
+var mythSeeds = require("./seed-mythrefs");
+var userSeeds = require("./seed-users");
 
 var MythRef = mongoose.model("MythRef");
 var User = mongoose.model("User");

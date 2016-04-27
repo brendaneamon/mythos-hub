@@ -16,13 +16,19 @@
     "$resource",
     MythReference
   ])
+  .factory("User", [
+    "$resource",
+    User
+  ])
   .controller("MythRefsIndexCtrl", [
     "MythReference",
+    "User",
     "$state",
     MythRefsIndexCtrl
   ])
   .controller("MythRefsShowCtrl", [
     "MythReference",
+    "User",
     "$stateParams",
     "$state",
     "$window",
@@ -46,40 +52,59 @@
     return MythRef;
   }
 
-// Myth Reference index controller function
+  // User factory function
 
-function MythRefsIndexCtrl (MythReference, $state) {
-  var vm = this;
-  vm.references = MythReference.all;
-  vm.create = function(){
-    MythReference.save({reference: vm.reference}, function(response){
-      var reference = new MythReference(response);
-      MythReference.all.push(reference);
-      $state.go("show", {title: reference.title});
+  function User($resource){
+    var User = $resource("/api/users/:name", {}, {
+      update: {method: "PUT"},
     });
-  };
-}
+    User.all = User.query();
+    User.find = function(property, value, callback){
+      User.all.$promise.then(function(){
+        User.all.forEach(function(user){
+          if(user[property] == value) callback(user);
+        });
+      });
+    };
+    return User;
+  }
 
-// Myth Reference show controller function
+  // Myth Reference index controller function
 
-function MythRefsShowCtrl (MythReference, $stateParams, $state, $window) {
-  var vm = this;
-  MythReference.find("title", $stateParams.title, function(reference){
-    vm.reference = reference;
-  });
-  vm.update = function(){
-    MythReference.update($stateParams, {reference: vm.reference}, function(){
-      $state.go("index");
+  function MythRefsIndexCtrl (MythReference, User, $state) {
+    var vm = this;
+    vm.users = User.all;
+    console.dir(vm.users);
+    vm.references = MythReference.all;
+    vm.create = function(){
+      MythReference.save({reference: vm.reference}, function(response){
+        var reference = new MythReference(response);
+        MythReference.all.push(reference);
+        $state.go("show", {title: reference.title});
+      });
+    };
+  }
+
+  // Myth Reference show controller function
+
+  function MythRefsShowCtrl (MythReference, User, $stateParams, $state, $window) {
+    var vm = this;
+    MythReference.find("title", $stateParams.title, function(reference){
+      vm.reference = reference;
     });
-  };
-  vm.delete = function(){
-    MythReference.remove({title: vm.reference.title}, function(){
-      $window.location.replace("/myth-references");
-    });
-  };
-}
+    vm.update = function(){
+      MythReference.update($stateParams, {reference: vm.reference}, function(){
+        $state.go("index");
+      });
+    };
+    vm.delete = function(){
+      MythReference.remove({title: vm.reference.title}, function(){
+        $window.location.replace("/myth-references");
+      });
+    };
+  }
 
-// Router function
+  // Router function
 
   function Router ($stateProvider, $locationProvider, $urlRouterProvider) {
     $locationProvider.html5Mode(true);
