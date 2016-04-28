@@ -6,6 +6,6 @@ nav {
   background-color: #66023c;
 }
 
-ul.right li {
-  padding: 5px;
+.chip {
+  opacity: 0.85;
 }

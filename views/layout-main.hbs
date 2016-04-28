@@ -14,18 +14,22 @@
     <div class="navbar-fixed">
       <nav class="darken 3">
         <div class="nav-wrapper container">
-          <a href="#" class="brand-logo center">Mythos Hub</a>
+          <a href="/" class="brand-logo center">Mythos Hub</a>
           <ul class="left hide-on-med-and-down">
             {{#if user}}
             <li><a class="waves-effect waves-light btn" href="/logout">Sign out</a></li>
             {{else}}
-            <li><a class="waves-effect waves-light btn" href="/login/twitter">Sign in</a></li>
+            <li><a class="waves-effect waves-light btn" href="/login/twitter">Log in with Twitter</a></li>
             {{/if}}
           </ul>
           <ul class="right hide-on-med-and-down">
             {{#if user}}
-            <li><img class="circle responsive-img z-depth-2" src="{{user.t_photo_url}}" alt="{{user.name}}" /></li>
-            <li>{{user.name}}</li>
+            <li>
+              <div class="chip">
+                <img class="circle responsive-img z-depth-2" src="{{user.t_photo_url}}" alt="{{user.name}}" />
+                {{user.name}}
+              </div>
+            </li>
             {{/if}}
           </ul>
 
