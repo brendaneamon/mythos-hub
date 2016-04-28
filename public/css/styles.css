@@ -17,3 +17,9 @@ form {
 .filter {
   margin-bottom: 2em;
 }
+
+.card-title {
+  font-weight: bold;
+  background: #000;
+  opacity: 0.7;
+}
