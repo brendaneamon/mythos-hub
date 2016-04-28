@@ -16,11 +16,11 @@ var User = mongoose.model("User");
 
 if(process.env.NODE_ENV !== "production"){
   var env = require("./env");
-  process.env.session_secret = env.session_secret;
-  process.env.t_callback_url = env.t_callback_url;
-  process.env.t_consumer_key = env.t_consumer_key;
-  process.env.t_consumer_secret = env.t_consumer_secret;
 }
+process.env.session_secret = (process.env.SESSION_SECRET || env.session_secret);
+process.env.t_callback_url = (process.env.T_CALLBACK_URL || env.t_callback_url);
+process.env.t_consumer_key = (process.env.T_CONSUMER_KEY || env.t_consumer_key);
+process.env.t_consumer_secret = (process.env.T_CONSUMER_SECRET || env.t_consumer_secret);
 
 app.use(session({
   secret: process.env.session_secret,
