@@ -13,3 +13,7 @@ form {
 .chip {
   opacity: 0.85;
 }
+
+.filter {
+  margin-bottom: 2em;
+}

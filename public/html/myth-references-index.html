@@ -1,15 +1,15 @@
 <h1>Songs and Myths</h1>
 
-<div>
+<div class="filter">
     <div class="row">
       <div class="input-field col s12">
-        <input type="text" placeholder="Filter songs by search term" data-ng-model="indexVM.filter_on"/>
+        <input type="text" placeholder="Filter songs by search term" data-ng-model="indexVM.filter"/>
       </div>
   </div>
 </div>
 
-<div class="collection" data-ng-repeat="reference in indexVM.references | filter: indexVM.filter_on">
-  <a class="collection-item" href="/myth-references/{{reference.title}}">"{{reference.title}}" by {{reference.artist}}</a>
+<div class="collection" data-ng-repeat="reference in indexVM.references | filter: indexVM.filter">
+  <a class="collection-item flow-text" href="/myth-references/{{reference.title}}">"{{reference.title}}" by {{reference.artist}}</a>
 </div>
 
 <div>
