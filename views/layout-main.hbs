@@ -42,14 +42,14 @@
 
           <ul id="nav-mobile" class="side-nav">
             {{#if user}}
-            <li><img class="circle responsive-img z-depth-2" src="{{user.t_photo_url}}" alt="{{user.name}}" /></li>
-            <li>Welcome, {{user.name}}</li>
-            <li><a href="/logout">Sign out</a></li>
+            <li><a href="#">{{user.name}}</a></li>
+            <li> <a href="#"><img class="circle responsive-img z-depth-2" src="{{user.t_photo_url}}" alt="{{user.name}}" /></a></li>
+            <li><a class="waves-effect waves-light btn" href="/logout">Sign out</a></li>
             {{else}}
-            <li><a href="/login/twitter">Sign in</a></li>
+            <li><a class="waves-effect waves-light btn" href="/login/twitter">Log in with Twitter</a></li>
             {{/if}}
           </ul>
-          <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
+          <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">perm_identity</i></a>
         </div>
       </nav>
     </div>
