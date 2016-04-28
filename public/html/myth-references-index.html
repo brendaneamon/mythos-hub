@@ -1,11 +1,11 @@
 <h1>Songs and Myths</h1>
 
-<div data-ng-repeat="reference in indexVM.references">
+<div class="collection "data-ng-repeat="reference in indexVM.references">
   <p>"<a href="/myth-references/{{reference.title}}">{{reference.title}}" by {{reference.artist}}</a></p>
 </div>
 
 <div>
-  <form class="col s12"data-ng-if="indexVM.admin">
+  <form class="col s12" data-ng-if="indexVM.admin">
     <div class="row">
       <div class="input-field col s12 m6">
         <input type="text" name="indexVM.reference.title" data-ng-model="indexVM.reference.title" placeholder="Title">
