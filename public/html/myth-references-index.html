@@ -1,13 +1,33 @@
-<h2>Songs and Myths</h2>
+<h1>Songs and Myths</h1>
 
 <div data-ng-repeat="reference in indexVM.references">
   <p>"<a href="/myth-references/{{reference.title}}">{{reference.title}}" by {{reference.artist}}</a></p>
 </div>
 
-<form data-ng-if="indexVM.admin">
-  <input type="text" name="indexVM.reference.title" data-ng-model="indexVM.reference.title" placeholder="Title">
-  <input type="text" name="indexVM.reference.artist" data-ng-model="indexVM.reference.artist"placeholder="Artist">
-  <textarea name="indexVM.reference.description" placeholder="Description" data-ng-model="indexVM.reference.description"></textarea>
-  <input type="text" name="indexVM.reference.mediaUrl" data-ng-model="indexVM.reference.mediaUrl" placeholder="Media URL">
-  <button data-ng-click="indexVM.create()">Add New</button>
-</form>
+<div>
+  <form class="col s12"data-ng-if="indexVM.admin">
+    <div class="row">
+      <div class="input-field col s12 m6">
+        <input type="text" name="indexVM.reference.title" data-ng-model="indexVM.reference.title" placeholder="Title">
+      </div>
+      <div class="input-field col s12 m6">
+        <input type="text" name="indexVM.reference.artist" data-ng-model="indexVM.reference.artist"placeholder="Artist">
+      </div>
+    </div>
+    <div class="row">
+      <div class="input-field col s12">
+        <input type="text" name="indexVM.reference.description" placeholder="Description" data-ng-model="indexVM.reference.description">
+      </div>
+    </div>
+    <div class="row">
+      <div class="input-field col s12" >
+        <input type="text" name="indexVM.reference.mediaUrl" data-ng-model="indexVM.reference.mediaUrl" placeholder="Media URL">
+      </div>
+    </div>
+    <div class="row">
+      <button class="btn waves-effect waves-light left" data-ng-click="indexVM.create()">Add New
+        <i class="material-icons right">send</i>
+      </button>
+    </div>
+  </form>
+</div>

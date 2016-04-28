@@ -2,8 +2,12 @@ body {
   text-align: center;
 }
 
-nav {
+nav, footer {
   background-color: #66023c;
+}
+
+form {
+  margin-bottom: 2em;
 }
 
 .chip {
