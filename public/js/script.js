@@ -1,3 +1,5 @@
+// Controls left-hand pop-menu for mobile and tablet views
+
 (function($){
   $(function(){
 

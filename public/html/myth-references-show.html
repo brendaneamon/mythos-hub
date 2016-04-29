@@ -4,6 +4,7 @@
 <div data-ng-if="showVM.reference">
   <h2>{{showVM.reference.title}}</h2>
   <h3>{{showVM.reference.artist}}</h3>
+  <img class="responsive-img z-depth-2" width="480" src="{{showVM.reference.imgUrl}}">
   <p class="flow-text">{{showVM.reference.description}}</p>
   <a class="waves-effect waves-light btn" href="{{showVM.reference.mediaUrl}}" target="_blank">Watch Video</a>
 
