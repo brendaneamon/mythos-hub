@@ -1,38 +1,46 @@
-<h2>{{showVM.reference.title}}</h2>
-<h3>{{showVM.reference.artist}}</h3>
-
-<div>
-  <p class="flow-text">{{showVM.reference.description}}</p>
-  <p class="flow-text">Number of likes: {{showVM.reference.likes}}</p>
+<div data-ng-if="!showVM.reference">
+  <h2>Sorry, but that mythological reference is not in the database.</h2>
 </div>
+<div data-ng-if="showVM.reference">
+  <h2>{{showVM.reference.title}}</h2>
+  <h3>{{showVM.reference.artist}}</h3>
+  <div>
+    <p class="flow-text">{{showVM.reference.description}}</p>
+    <p class="flow-text">Number of likes: {{showVM.reference.likedBy.length}}</p>
+  </div>
 
-<div>
-  <form class="col s12" data-ng-if="showVM.admin">
-    <div class="row">
-      <div class="input-field col s12 m6">
-        <input type="text" name="showVM.reference.title" data-ng-model="showVM.reference.title" value="showVM.reference.title" placeholder="Title">
+  <div>
+    <button class="btn" data-ng-click="showVM.like()">Like</button>
+  </div>
+
+  <div>
+    <form class="col s12" data-ng-if="showVM.admin">
+      <div class="row">
+        <div class="input-field col s12 m6">
+          <input type="text" name="showVM.reference.title" data-ng-model="showVM.reference.title" value="showVM.reference.title" placeholder="Title">
+        </div>
+        <div class="input-field col s12 m6">
+          <input type="text" name="showVM.reference.artist" data-ng-model="showVM.reference.artist" value="showVM.reference.artist" placeholder="Artist">
+        </div>
       </div>
-      <div class="input-field col s12 m6">
-        <input type="text" name="showVM.reference.artist" data-ng-model="showVM.reference.artist" value="showVM.reference.artist" placeholder="Artist">
+      <div class="row">
+        <div class="input-field col s12">
+          <input type="text" name="showVM.reference.description"  data-ng-model="showVM.reference.description" value="showVM.reference.description" placeholder="Description">
+        </div>
       </div>
-    </div>
-    <div class="row">
-      <div class="input-field col s12">
-        <input type="text" name="showVM.reference.description"  data-ng-model="showVM.reference.description" value="showVM.reference.description" placeholder="Description">
+      <div class="row">
+        <div class="input-field col s12" >
+          <input type="text" name="showVM.reference.mediaUrl" data-ng-model="showVM.reference.mediaUrl" value="showVM.reference.mediaUrl" placeholder="Media URL">
+        </div>
       </div>
-    </div>
-    <div class="row">
-      <div class="input-field col s12" >
-        <input type="text" name="showVM.reference.mediaUrl" data-ng-model="showVM.reference.mediaUrl" value="showVM.reference.mediaUrl" placeholder="Media URL">
+      <div class="row">
+        <button class="btn waves-effect waves-light left" data-ng-click="showVM.update()">Update
+          <i class="material-icons right">send</i>
+        </button>
+        <button class="btn red waves-effect waves-light right" data-ng-click="showVM.delete()">Delete
+          <i class="material-icons right">delete</i>
+        </button>
       </div>
-    </div>
-    <div class="row">
-      <button class="btn waves-effect waves-light left" data-ng-click="showVM.update()">Update
-        <i class="material-icons right">send</i>
-      </button>
-      <button class="btn red waves-effect waves-light right" data-ng-click="showVM.delete()">Delete
-        <i class="material-icons right">delete</i>
-      </button>
-    </div>
-  </form>
+    </form>
+  </div>
 </div>

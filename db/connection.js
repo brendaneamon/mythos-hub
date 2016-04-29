@@ -12,8 +12,7 @@ var MythRefSchema = new mongoose.Schema(
       required: true
     },
     description: String,
-    mediaUrl: String,
-    likes: { type: Number, default: 0 }
+    mediaUrl: String
   }
 );
 
