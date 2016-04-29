@@ -12,7 +12,8 @@ var MythRefSchema = new mongoose.Schema(
       required: true
     },
     description: String,
-    mediaUrl: String
+    mediaUrl: String,
+    imgUrl: String
   }
 );
 
