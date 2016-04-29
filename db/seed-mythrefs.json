@@ -34,5 +34,17 @@
     "artist": "Genesis",
     "description": "English progressive rock band Genesis perform “The Fountain of Salmacis,” a song about a famous nymph described in Ovid’s Metamorphoses. If you look (or listen) closely, you may notice that the band is fronted by a young Peter Gabriel, with a noticeably not bald Phil Collins behind the drum kit.",
     "mediaUrl": "https://www.youtube.com/watch?v=orSrE8yowQk"
+  },
+  {
+    "title": "Wrapped around Your Finger",
+    "artist": "The Police",
+    "description": "I’m sure that at least some of you have heard “Wrapped Around Your Finger” by the Police. What you may not have noticed is the fact that Sting’s lyrics refer to Scylla and Charybdis, the legendary “rock and a hard place” of Odysseus’ voyage home.",
+    "mediaUrl": "https://www.youtube.com/watch?v=svWINSRhQU0"
+  },
+  {
+    "title": "Venus",
+    "artist": "Shocking Blue",
+    "description": "This classic cut from Dutch band Shocking Blue was first released in 1969.  This song, which was clearly inspired by the Roman goddess of love, returned to prominence in the 1980s when it was covered by Bananarama, an all-girl pop group from the UK.",
+    "mediaUrl": "https://youtu.be/8LhkyyCvUHk"
   }
 ]
