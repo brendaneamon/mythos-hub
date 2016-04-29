@@ -1,4 +1,5 @@
 var express = require("express");
+var favicon = require("serve-favicon");
 var hbs = require("express-handlebars");
 var parser = require("body-parser");
 var session = require("express-session");
@@ -22,6 +23,7 @@ process.env.t_callback_url = (process.env.T_CALLBACK_URL || env.t_callback_url);
 process.env.t_consumer_key = (process.env.T_CONSUMER_KEY || env.t_consumer_key);
 process.env.t_consumer_secret = (process.env.T_CONSUMER_SECRET || env.t_consumer_secret);
 
+app.use(favicon(__dirname + "/public/favicon.ico"));
 app.use(session({
   secret: process.env.session_secret,
   resave: false,
