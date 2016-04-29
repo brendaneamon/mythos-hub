@@ -4,14 +4,7 @@
 <div data-ng-if="showVM.reference">
   <h2>{{showVM.reference.title}}</h2>
   <h3>{{showVM.reference.artist}}</h3>
-  <div>
-    <p class="flow-text">{{showVM.reference.description}}</p>
-    <p class="flow-text">Number of likes: {{showVM.reference.likedBy.length}}</p>
-  </div>
-
-  <div>
-    <button class="btn" data-ng-click="showVM.like()">Like</button>
-  </div>
+  <p class="flow-text">{{showVM.reference.description}}</p>
 
   <div>
     <form class="col s12" data-ng-if="showVM.admin">
