@@ -1,41 +1,45 @@
 <h1>Songs and Myths</h1>
-
-<div class="filter">
+<div data-ng-if="!(indexVM.user || indexVM.admin)">
+  <h2>Please log in with Twitter to continue</h2>
+</div>
+<div data-ng-if="(indexVM.user || indexVM.admin)">
+  <div class="filter">
     <div class="row">
       <div class="input-field col s12">
         <input type="text" placeholder="Filter songs by search term" data-ng-model="indexVM.filter"/>
       </div>
+    </div>
   </div>
-</div>
 
-<div class="collection" data-ng-repeat="reference in indexVM.references | filter: indexVM.filter">
-  <a class="collection-item flow-text" href="/myth-references/{{reference.title}}">"{{reference.title}}" &ndash; {{reference.artist}}</a>
-</div>
+  <div class="collection" data-ng-repeat="reference in indexVM.references | filter: indexVM.filter">
+    <a class="collection-item flow-text" href="/myth-references/{{reference.title}}">"{{reference.title}}" &ndash; {{reference.artist}}</a>
+  </div>
 
-<div>
-  <form class="col s12" data-ng-if="indexVM.admin">
-    <div class="row">
-      <div class="input-field col s12 m6">
-        <input type="text" name="indexVM.reference.title" data-ng-model="indexVM.reference.title" placeholder="Title">
+  <div>
+    <form class="col s12" data-ng-if="indexVM.admin">
+      <div class="row">
+        <div class="input-field col s12 m6">
+          <input type="text" name="indexVM.reference.title" data-ng-model="indexVM.reference.title" placeholder="Title">
+        </div>
+        <div class="input-field col s12 m6">
+          <input type="text" name="indexVM.reference.artist" data-ng-model="indexVM.reference.artist"placeholder="Artist">
+        </div>
       </div>
-      <div class="input-field col s12 m6">
-        <input type="text" name="indexVM.reference.artist" data-ng-model="indexVM.reference.artist"placeholder="Artist">
+      <div class="row">
+        <div class="input-field col s12">
+          <input type="text" name="indexVM.reference.description" placeholder="Description" data-ng-model="indexVM.reference.description">
+        </div>
       </div>
-    </div>
-    <div class="row">
-      <div class="input-field col s12">
-        <input type="text" name="indexVM.reference.description" placeholder="Description" data-ng-model="indexVM.reference.description">
+      <div class="row">
+        <div class="input-field col s12" >
+          <input type="text" name="indexVM.reference.mediaUrl" data-ng-model="indexVM.reference.mediaUrl" placeholder="Media URL">
+        </div>
       </div>
-    </div>
-    <div class="row">
-      <div class="input-field col s12" >
-        <input type="text" name="indexVM.reference.mediaUrl" data-ng-model="indexVM.reference.mediaUrl" placeholder="Media URL">
+      <div class="row">
+        <button class="btn waves-effect waves-light left" data-ng-click="indexVM.create()">Add New
+          <i class="material-icons right">send</i>
+        </button>
       </div>
-    </div>
-    <div class="row">
-      <button class="btn waves-effect waves-light left" data-ng-click="indexVM.create()">Add New
-        <i class="material-icons right">send</i>
-      </button>
-    </div>
-  </form>
+    </form>
+  </div>
 </div>

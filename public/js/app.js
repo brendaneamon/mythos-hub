@@ -75,7 +75,9 @@
     var vm = this;
     User.find("isAdmin", "isCurrentUser", true, true, function(user){
       vm.admin = user;
-      console.dir(vm.admin);
+    });
+    User.find("isAdmin", "isCurrentUser", false, true, function(user){
+      vm.user = user;
     });
     vm.references = MythReference.all;
     vm.create = function(){
@@ -93,7 +95,6 @@
     var vm = this;
     User.find("isAdmin", "isCurrentUser", true, true, function(user){
       vm.admin = user;
-      console.dir(vm.admin);
     });
     MythReference.find("title", $stateParams.title, function(reference){
       vm.reference = reference;
