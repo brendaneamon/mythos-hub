@@ -10,6 +10,10 @@ nav, footer {
   background-color: #66023c;
 }
 
+h2 {
+  font-style: italic;
+}
+
 form {
   margin-bottom: 3em;
 }
