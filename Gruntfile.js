@@ -11,27 +11,30 @@ module.exports = function (grunt) {
       },
       app: {
         src: ['public/**/*.js'],
-        dest: 'build/<%= pkg.name %>.js'
+        dest: 'build/js/<%= pkg.name %>.js'
       },
       vendor: {
         src: ['vendor/**/*.js'],
-        dest: 'build/vendor.js'
+        dest: 'build/js/vendor.js'
       }
     },
     uglify: {
       options: {
         banner: '/*! <%= pkg.name %> <%= grunt.template.today("dd-mm-yyyy") %> */\n',
         sourceMap: true,
-        sourceMapIncludeSources: true
+        sourceMapIncludeSources: true,
+        mangle : {
+          except: ['<%= concat.vendor.dest %>']
+        }
       },
       app: {
         files: {
-          'build/<%= pkg.name %>.min.js': ['<%= concat.app.dest %>'],
+          'build/js/<%= pkg.name %>.min.js': ['<%= concat.app.dest %>'],
         }
       },
       vendor: {
         files: {
-          'build/vendor.min.js': ['<%= concat.vendor.dest %>']
+          'build/js/vendor.min.js': ['<%= concat.vendor.dest %>']
         }
       }
     },

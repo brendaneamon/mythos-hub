@@ -43,6 +43,7 @@ app.engine(".hbs", hbs({
 }));
 
 app.use("/assets", express.static("public"));
+app.use("/scripts", express.static("build"));
 app.use(parser.json({extended: true}));
 app.use(function(req, res, next){
   res.locals.isProduction = (process.env.NODE_ENV == "production");
