@@ -1,23 +1,34 @@
-module.exports = function(grunt) {
+module.exports = function (grunt) {
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
-    clean: ['dist/*'],
+    clean: ['build/*'],
     concat: {
       options: {
         separator: '\n'
       },
-      dist: {
+      app: {
         src: ['public/**/*.js'],
-        dest: 'dist/<%= pkg.name %>.js'
-      } 
+        dest: 'build/<%= pkg.name %>.js'
+      },
+      vendor: {
+        src: ['vendor/**/*.js'],
+        dest: 'build/vendor.js'
+      }
     },
     uglify: {
       options: {
-        banner: '/*! <%= pkg.name %> <%= grunt.template.today("dd-mm-yyyy") %> */\n'
+        banner: '/*! <%= pkg.name %> <%= grunt.template.today("dd-mm-yyyy") %> */\n',
+        sourceMap: true,
+        sourceMapIncludeSources: true
       },
-      dist: {
+      app: {
         files: {
-          'dist/<%= pkg.name %>.min.js': ['<%= concat.dist.dest %>']
+          'build/<%= pkg.name %>.min.js': ['<%= concat.app.dest %>'],
+        }
+      },
+      vendor: {
+        files: {
+          'build/vendor.min.js': ['<%= concat.vendor.dest %>']
         }
       }
     },
@@ -25,7 +36,7 @@ module.exports = function(grunt) {
       options: {
         reporter: require('jshint-stylish')
       },
-      files: ['public/**/*.js']
+      files: ['index.js', 'Grunfile.js', 'public/**/*.js']
     },
     watch: {
       files: ['<%= jshint.files %>'],
