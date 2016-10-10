@@ -1,11 +1,15 @@
 module.exports = function(grunt) {
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
+    clean: ['dist/*'],
     concat: {
+      options: {
+        separator: '\n'
+      },
       dist: {
         src: ['public/**/*.js'],
         dest: 'dist/<%= pkg.name %>.js'
-      }
+      } 
     },
     uglify: {
       options: {
@@ -18,6 +22,9 @@ module.exports = function(grunt) {
       }
     },
     jshint: {
+      options: {
+        reporter: require('jshint-stylish')
+      },
       files: ['public/**/*.js']
     },
     watch: {
@@ -25,11 +32,13 @@ module.exports = function(grunt) {
       tasks: ['jshint']
     }
   });
-
+  
   grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-contrib-concat');
-
-  grunt.registerTask('default', ['jshint', 'concat', 'uglify']);
+  grunt.loadNpmTasks('grunt-contrib-cssmin');
+  grunt.loadNpmTasks('grunt-contrib-clean');
+  
+  grunt.registerTask('default', ['jshint', 'clean', 'concat', 'uglify']);
 };
