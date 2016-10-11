@@ -22,9 +22,8 @@ module.exports = function (grunt) {
       options: {
         banner: '/*! <%= pkg.name %> <%= grunt.template.today("dd-mm-yyyy") %> */\n',
         sourceMap: true,
-        sourceMapIncludeSources: true,
         mangle : {
-          except: ['<%= concat.vendor.dest %>']
+          except: ['angular', 'jQuery']
         }
       },
       app: {
